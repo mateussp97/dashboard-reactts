@@ -9,16 +9,12 @@ const Dashboard: React.FC = () => {
       value: "Mateus",
       label: "Mateus",
     },
-    {
-      value: "Ana",
-      label: "Ana",
-    },
   ];
 
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#f7931b">
-        <SelectInput options={options} />
+        <SelectInput options={options} onChange={() => {}} />
       </ContentHeader>
     </Container>
   );
