@@ -42,6 +42,7 @@ export const Link = styled.a`
   transition: all 0.3s;
 
   font-size: 1.25rem;
+  font-weight: 300;
 
   > svg {
     margin-right: 0.5rem;

@@ -3,20 +3,16 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 //? Import Global Style
 import GlobalStyles from "./styles/GlobalStyles";
-//? Import Components
-import Layout from "./components/Layout/index";
 //? Import Theme Color
 import dark from "./styles/themes/dark";
-//? Import pages
-import Dashboard from "./pages/Dashboard";
+//? Import Routes
+import Routes from "./routes";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={dark}>
       <GlobalStyles />
-      <Layout>
-        <Dashboard />
-      </Layout>
+      <Routes />
     </ThemeProvider>
   );
 };

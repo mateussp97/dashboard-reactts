@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ITitleProps {
+  lineColor: string;
+}
+
 export const Container = styled.div`
   grid-area: CT;
   color: ${(props) => props.theme.colors.white};
@@ -16,16 +20,21 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div``;
 
-export const Title = styled.h1`
+export const Title = styled.h1<ITitleProps>`
+  line-height: 1.8;
   color: ${(props) => props.theme.colors.white};
 
   &::after {
     content: "";
     display: block;
-    width: 3rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 0.5rem solid ${(props) => props.theme.colors.warning};
+    width: 4rem;
+    border-radius: 0.25rem;
+    border-bottom: 1rem solid ${(props) => props.lineColor};
   }
 `;
 
-export const Controllers = styled.div``;
+export const Controllers = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
