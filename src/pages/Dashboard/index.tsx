@@ -7,6 +7,9 @@ import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
 import listOfMonths from "../../utils/months";
 import WalletBox from "../../components/WalletBox";
+import MessageBox from "./../../components/MessageBox/index";
+import happy from "../../assets/happy.svg";
+import sad from "../../assets/sad.svg";
 
 interface IRoutParams {
   match: {
@@ -105,6 +108,12 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
           icon="arrowDown"
           color="#e44c4e"
         />
+        <MessageBox
+          title="Muito bem!"
+          description="Sua carteira está positiva!"
+          icon={happy}
+          footerText="Continue assim, considere investir o seu saldo."
+        />
       </Content>
     </Container>
   );
@@ -116,6 +125,7 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export default Dashboard;

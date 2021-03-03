@@ -63,7 +63,7 @@ const Container = styled.div<IContainerProps>`
   background: ${(props) => props.color};
   color: ${(props) => props.theme.colors.white};
   border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   overflow: hidden;
 
   position: relative;
