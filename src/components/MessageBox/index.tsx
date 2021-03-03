@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import happy from "../../assets/happy.svg";
-import sad from "../../assets/sad.svg";
 
 interface IMessageBoxProps {
   title: string;
