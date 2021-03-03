@@ -95,7 +95,7 @@ const List: React.FC<IRoutParams> = ({ match }) => {
     );
 
     if (alreadySelected >= 0) {
-      const filtered = selectedFrequency.filter((item) => item != frequency);
+      const filtered = selectedFrequency.filter((item) => item !== frequency);
       setSelectedFrequency(filtered);
     } else {
       setSelectedFrequency((prev) => [...prev, frequency]);

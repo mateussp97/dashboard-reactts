@@ -10,6 +10,7 @@ import WalletBox from "../../components/WalletBox";
 import MessageBox from "./../../components/MessageBox/index";
 import happy from "../../assets/happy.svg";
 import sad from "../../assets/sad.svg";
+import PieChartBox from "../../components/PieChartBox";
 
 interface IRoutParams {
   match: {
@@ -29,13 +30,6 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
 
   //! Desestruturação
   const { type } = match.params;
-
-  //! Mudança do 'title' de acordo com o path
-  const params = useMemo(() => {
-    return type === "entry-balance"
-      ? { title: "Entradas", lineColor: "#f7931b" }
-      : { title: "Saídas", lineColor: "#e44c4e" };
-  }, [type]);
 
   const listData = useMemo(() => {
     return type === "entry-balance" ? gains : expenses;
@@ -142,6 +136,29 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
     }
   }, [totalBalance]);
 
+  const relationExpensesVersusGains = useMemo(() => {
+    const total = totalGains + totalExepense;
+    const percentGains = ((totalGains / total) * 100).toFixed(1);
+    const percentExpenses = ((totalExepense / total) * 100).toFixed(1);
+
+    const data = [
+      {
+        name: "Entradas",
+        value: totalGains,
+        percent: Number(percentGains),
+        color: "#f7931b",
+      },
+      {
+        name: "Saídas",
+        value: totalExepense,
+        percent: Number(percentExpenses),
+        color: "#e44c4e",
+      },
+    ];
+
+    return data;
+  }, [totalGains, totalExepense]);
+
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#f7931b">
@@ -186,6 +203,7 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
           icon={message.icon}
           footerText={message.footerText}
         />
+        <PieChartBox data={relationExpensesVersusGains} />
       </Content>
     </Container>
   );

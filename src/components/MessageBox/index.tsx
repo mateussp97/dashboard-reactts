@@ -31,7 +31,7 @@ const MessageBox: React.FC<IMessageBoxProps> = ({
 
 const Container = styled.div`
   width: 48%;
-  height: 240px;
+  height: 280px;
 
   background: ${(props) => props.theme.colors.tertiary};
   color: ${(props) => props.theme.colors.white};
