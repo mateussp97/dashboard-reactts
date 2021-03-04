@@ -12,6 +12,7 @@ import happy from "../../assets/happy.svg";
 import sad from "../../assets/sad.svg";
 import PieChartBox from "../../components/PieChartBox";
 import HistoryBox from "./../../components/HistoryBox/index";
+import BarChartBox from "../../components/BarChartBox";
 
 interface IRoutParams {
   match: {
@@ -220,6 +221,46 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
       });
   }, [yearSelected]);
 
+  //! Dados para BarChartBox - Gráfico
+  const relationExpensevesRecurrentVersusEventual = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    expenses
+      .filter((expense) => {
+        const date = new Date(expense.date);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        return month === Number(monthSelected) && year === Number(yearSelected);
+      })
+      .forEach((expense) => {
+        if (expense.frequency === "recorrente") {
+          return (amountRecurrent += Number(expense.amount));
+        }
+        if (expense.frequency === "eventual") {
+          return (amountEventual += Number(expense.amount));
+        }
+      });
+
+    const total = amountRecurrent + amountEventual;
+
+    return [
+      {
+        name: "Recorrentes",
+        amount: amountRecurrent,
+        percent: Number(((amountRecurrent / total) * 100).toFixed(1)),
+        color: "#f7931b",
+      },
+      {
+        name: "Eventual",
+        amount: amountEventual,
+        percent: Number(((amountEventual / total) * 100).toFixed(1)),
+        color: "#e44c4e",
+      },
+    ];
+  }, [yearSelected, monthSelected]);
+
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#f7931b">
@@ -269,6 +310,10 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
           data={historyData}
           lineColorAmountEntry="#f7931b"
           lineColorAmountOutput="#e44c4e"
+        />
+        <BarChartBox
+          data={relationExpensevesRecurrentVersusEventual}
+          title="Saídas"
         />
       </Content>
     </Container>
