@@ -221,8 +221,8 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
       });
   }, [yearSelected]);
 
-  //! Dados para BarChartBox - Gráfico
-  const relationExpensevesRecurrentVersusEventual = useMemo(() => {
+  //! Dados para BarChartBox component Expenses - Gráfico
+  const relationExpensesvesRecurrentVersusEventual = useMemo(() => {
     let amountRecurrent = 0;
     let amountEventual = 0;
 
@@ -240,6 +240,46 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
         }
         if (expense.frequency === "eventual") {
           return (amountEventual += Number(expense.amount));
+        }
+      });
+
+    const total = amountRecurrent + amountEventual;
+
+    return [
+      {
+        name: "Recorrentes",
+        amount: amountRecurrent,
+        percent: Number(((amountRecurrent / total) * 100).toFixed(1)),
+        color: "#f7931b",
+      },
+      {
+        name: "Eventual",
+        amount: amountEventual,
+        percent: Number(((amountEventual / total) * 100).toFixed(1)),
+        color: "#e44c4e",
+      },
+    ];
+  }, [yearSelected, monthSelected]);
+
+  //! Dados para BarChartBox component Gains - Gráfico
+  const relationGainsvesRecurrentVersusEventual = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    gains
+      .filter((gain) => {
+        const date = new Date(gain.date);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        return month === Number(monthSelected) && year === Number(yearSelected);
+      })
+      .forEach((gain) => {
+        if (gain.frequency === "recorrente") {
+          return (amountRecurrent += Number(gain.amount));
+        }
+        if (gain.frequency === "eventual") {
+          return (amountEventual += Number(gain.amount));
         }
       });
 
@@ -312,8 +352,12 @@ const Dashboard: React.FC<IRoutParams> = ({ match }) => {
           lineColorAmountOutput="#e44c4e"
         />
         <BarChartBox
-          data={relationExpensevesRecurrentVersusEventual}
+          data={relationExpensesvesRecurrentVersusEventual}
           title="Saídas"
+        />
+        <BarChartBox
+          data={relationGainsvesRecurrentVersusEventual}
+          title="Entradas"
         />
       </Content>
     </Container>
