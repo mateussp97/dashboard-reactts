@@ -3,14 +3,14 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 //? Import Global Style
 import GlobalStyles from "./styles/GlobalStyles";
-//? Import Theme Color
-import dark from "./styles/themes/dark";
 //? Import Routes
 import Routes from "./routes";
+import { useTheme } from "./hooks/theme";
 
 const App: React.FC = () => {
+  const { theme } = useTheme();
   return (
-    <ThemeProvider theme={dark}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Routes />
     </ThemeProvider>

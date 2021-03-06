@@ -3,16 +3,28 @@ import styled from "styled-components";
 //? Importando a biblioteca react-switch e sua 'interface' para que possamos estilizar do nosso jeito
 import Switch, { ReactSwitchProps } from "react-switch";
 
-const Toggle: React.FC = () => (
+interface IToggleProps {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
+
+const Toggle: React.FC<IToggleProps> = ({
+  labelLeft,
+  labelRight,
+  checked,
+  onChange,
+}) => (
   <Container>
-    <ToggleLabel>Light</ToggleLabel>
+    <ToggleLabel>{labelLeft}</ToggleLabel>
     <ToggleSelector
-      checked
+      checked={checked}
       uncheckedIcon={false}
       checkedIcon={false}
-      onChange={() => {}}
+      onChange={onChange}
     />
-    <ToggleLabel>Dark</ToggleLabel>
+    <ToggleLabel>{labelRight}</ToggleLabel>
   </Container>
 );
 

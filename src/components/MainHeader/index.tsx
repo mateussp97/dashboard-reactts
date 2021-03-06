@@ -1,12 +1,24 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 //? Import Array
 import emojis from "../../utils/emojis";
 //? Import Styled
 import styled from "styled-components";
 //? Import Components
 import Toggle from "./../Toggle/index";
+import { useTheme } from "../../hooks/theme";
 
 const MainHeader: React.FC = () => {
+  const { toggleTheme, theme } = useTheme();
+  //! Um estado para verificar qual theme está sendo usado
+  const [darkTheme, setDarkTheme] = useState(() =>
+    theme.title === "dark" ? true : false
+  );
+
+  const handleChangeTheme = () => {
+    setDarkTheme(!darkTheme);
+    toggleTheme();
+  };
+
   const emoji = useMemo(() => {
     //! A const 'indice' recebe o menos número arredondado entre 0 e o tamanho do Array 'emojis'
     //! É retornado o Array emojis com o índice gerado randomicamente
@@ -16,7 +28,12 @@ const MainHeader: React.FC = () => {
 
   return (
     <Container>
-      <Toggle />
+      <Toggle
+        labelLeft="Light"
+        labelRight="Dark"
+        checked={darkTheme}
+        onChange={handleChangeTheme}
+      />
       <Profile>
         <Welcome>Olá, {emoji} </Welcome>
         <UserName>Mateus de Souza</UserName>
