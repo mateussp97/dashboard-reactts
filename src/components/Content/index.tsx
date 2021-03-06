@@ -25,5 +25,9 @@ const Container = styled.div`
   ::-webkit-scrollbar-track {
     background: ${(props) => props.theme.colors.tertiary};
   }
+
+  @media screen and (max-width: 1000px) {
+    padding: 2rem 1rem 0;
+  }
 `;
 export default Content;

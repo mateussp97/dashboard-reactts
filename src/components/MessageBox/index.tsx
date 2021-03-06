@@ -47,6 +47,10 @@ const Container = styled.div`
   > header img {
     width: 3rem;
   }
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export default MessageBox;

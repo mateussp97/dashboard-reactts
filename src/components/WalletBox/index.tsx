@@ -86,6 +86,24 @@ const Container = styled.div<IContainerProps>`
     position: absolute;
     bottom: 1rem;
   }
+
+  @media screen and (max-width: 1000px) {
+    h1 {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    width: 100%;
+
+    &:nth-child(2) {
+      margin: 2rem 0;
+    }
+  }
 `;
 
 export default WalletBox;

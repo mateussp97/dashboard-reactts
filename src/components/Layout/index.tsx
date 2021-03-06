@@ -20,6 +20,14 @@ const Grid = styled.div`
     "AS MH"
     "AS CT";
   height: 100vh;
+
+  @media screen and (max-width: 668px) {
+    grid-template-columns: 100%;
+    grid-template-rows: 70px auto;
+    grid-template-areas:
+      "MH"
+      "CT";
+  }
 `;
 
 export default Layout;

@@ -66,6 +66,10 @@ const Container = styled.div`
   color: ${(props) => props.theme.colors.white};
 
   padding: 1rem 1rem 2rem 1rem;
+
+  @media screen and (max-width: 1000px) {
+    margin: 2rem 0;
+  }
 `;
 
 export default HistoryBox;

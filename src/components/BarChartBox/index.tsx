@@ -63,6 +63,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+
+    margin: 0 0 2rem;
+  }
 `;
 
 const SideLeft = styled.div``;
@@ -118,6 +124,10 @@ const SideRight = styled.div`
   height: 200px;
 
   padding: 0 4rem;
+
+  @media screen and (max-width: 767px) {
+    padding: 0 2rem;
+  }
 `;
 
 export default BarChartBox;

@@ -57,6 +57,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+
+    margin: 0;
+  }
 `;
 
 const SideLeft = styled.aside``;
