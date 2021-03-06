@@ -33,7 +33,9 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#cccccc" />
           <XAxis dataKey="month" stroke="#cccccc" />
-          <Tooltip />
+          <Tooltip
+            formatter={(value: Number) => formatCurrency(Number(value))}
+          />
           <Line
             type="monotone"
             dataKey="amountEntry"
