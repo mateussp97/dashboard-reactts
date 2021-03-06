@@ -49,7 +49,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.tertiary};
   color: ${(props) => props.theme.colors.white};
 
-  padding: 1rem 2rem;
+  padding: 1rem;
   margin: 2rem 0;
 
   border-radius: 0.25rem;

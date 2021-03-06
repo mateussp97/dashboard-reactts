@@ -57,7 +57,7 @@ const Container = styled.div`
 
   border-radius: 0.25rem;
 
-  padding: 1rem 2rem;
+  padding: 1rem;
   margin: 2rem 0;
 
   display: flex;
