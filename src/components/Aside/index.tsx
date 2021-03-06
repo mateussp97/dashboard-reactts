@@ -7,33 +7,39 @@ import {
   MdArrowUpward,
   MdExitToApp,
 } from "react-icons/md";
+import { useAuth } from "../../hooks/auth";
 
-const Aside: React.FC = () => (
-  <Container>
-    <Header>
-      <Logo src={ImageLogo} alt="Logo Minha Carteira" />
-      <Title>Minha carteira</Title>
-    </Header>
-    <Menu>
-      <Link href="/dashboard">
-        <MdDashboard />
-        Dashboard
-      </Link>
-      <Link href="/list/entry-balance">
-        <MdArrowDownward />
-        Entradas
-      </Link>
-      <Link href="/list/exit-balance">
-        <MdArrowUpward />
-        Saídas
-      </Link>
-      <Link href="#">
-        <MdExitToApp />
-        Sair
-      </Link>
-    </Menu>
-  </Container>
-);
+const Aside: React.FC = () => {
+  //! Pegamos a função do hook criado 'useAuth' para colocar no botão para sair da aplicação
+  const { signOut } = useAuth();
+
+  return (
+    <Container>
+      <Header>
+        <Logo src={ImageLogo} alt="Logo Minha Carteira" />
+        <Title>Minha carteira</Title>
+      </Header>
+      <Menu>
+        <Link href="/dashboard">
+          <MdDashboard />
+          Dashboard
+        </Link>
+        <Link href="/list/entry-balance">
+          <MdArrowDownward />
+          Entradas
+        </Link>
+        <Link href="/list/exit-balance">
+          <MdArrowUpward />
+          Saídas
+        </Link>
+        <Link onClick={signOut}>
+          <MdExitToApp />
+          Sair
+        </Link>
+      </Menu>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   grid-area: AS;
@@ -73,6 +79,8 @@ const Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 
   transition: all 0.3s;
 
