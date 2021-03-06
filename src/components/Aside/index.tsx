@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ImageLogo from "../../assets/logo.svg";
 import {
   MdDashboard,
@@ -9,12 +9,16 @@ import {
 } from "react-icons/md";
 import { useAuth } from "../../hooks/auth";
 
+interface IContainerProps {
+  menuIsOpen: boolean;
+}
+
 const Aside: React.FC = () => {
   //! Pegamos a função do hook criado 'useAuth' para colocar no botão para sair da aplicação
   const { signOut } = useAuth();
 
   return (
-    <Container>
+    <Container menuIsOpen={true}>
       <Header>
         <Logo src={ImageLogo} alt="Logo Minha Carteira" />
         <Title>Minha carteira</Title>
@@ -41,7 +45,7 @@ const Aside: React.FC = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<IContainerProps>`
   grid-area: AS;
 
   background: ${(props) => props.theme.colors.secondary};
@@ -49,6 +53,27 @@ const Container = styled.div`
   padding-top: 1rem;
 
   border-right: 1px solid ${(props) => props.theme.colors.gray};
+
+  position: relative;
+
+  @media screen and (max-width: 676px) {
+    width: 175px;
+    position: fixed;
+    z-index: 2;
+    height: ${(props) => (props.menuIsOpen ? "100vh" : "70px")};
+    overflow: hidden;
+
+    ${(props) =>
+      !props.menuIsOpen
+        ? css`
+            border: none;
+            border-bottom: 1px solid ${(props) => props.theme.colors.gray};
+            height: 70px;
+          `
+        : css`
+            height: 100vh;
+          `}
+  }
 `;
 
 const Header = styled.header`
@@ -59,10 +84,22 @@ const Header = styled.header`
 
 const Logo = styled.img`
   margin-right: 1rem;
+
+  @media screen and (max-width: 676px) {
+    width: 2rem;
+
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
 `;
 
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.white};
+
+  @media screen and (max-width: 676px) {
+    display: none;
+  }
 `;
 
 const Menu = styled.nav`
@@ -73,6 +110,10 @@ const Menu = styled.nav`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
+  @media screen and (max-width: 676px) {
+    margin-left: 1rem;
+  }
 `;
 
 const Link = styled.a`
