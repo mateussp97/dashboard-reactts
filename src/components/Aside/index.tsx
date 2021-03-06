@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import ImageLogo from "../../assets/logo.svg";
 import {
@@ -6,6 +6,8 @@ import {
   MdArrowDownward,
   MdArrowUpward,
   MdExitToApp,
+  MdClose,
+  MdMenu,
 } from "react-icons/md";
 import { useAuth } from "../../hooks/auth";
 
@@ -16,10 +18,18 @@ interface IContainerProps {
 const Aside: React.FC = () => {
   //! Pegamos a função do hook criado 'useAuth' para colocar no botão para sair da aplicação
   const { signOut } = useAuth();
+  const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
+
+  const handleToggleMenu = () => {
+    setToggleMenuIsOpened(!toggleMenuIsOpened);
+  };
 
   return (
-    <Container menuIsOpen={true}>
+    <Container menuIsOpen={toggleMenuIsOpened}>
       <Header>
+        <ToggleMenu onClick={handleToggleMenu}>
+          {toggleMenuIsOpened ? <MdClose /> : <MdMenu />}
+        </ToggleMenu>
         <Logo src={ImageLogo} alt="Logo Minha Carteira" />
         <Title>Minha carteira</Title>
       </Header>
@@ -82,15 +92,35 @@ const Header = styled.header`
   justify-content: center;
 `;
 
+const ToggleMenu = styled.div`
+  height: 2rem;
+  width: 2rem;
+
+  background: ${(props) => props.theme.colors.warning};
+
+  border-radius: 0.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  display: none;
+
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  @media screen and (max-width: 767px) {
+    display: inherit;
+  }
+`;
+
 const Logo = styled.img`
   margin-right: 1rem;
 
   @media screen and (max-width: 676px) {
-    width: 2rem;
-
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+    display: none;
   }
 `;
 
