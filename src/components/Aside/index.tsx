@@ -8,34 +8,32 @@ import {
   MdExitToApp,
 } from "react-icons/md";
 
-const Aside: React.FC = () => {
-  return (
-    <Container>
-      <Header>
-        <Logo src={ImageLogo} alt="Logo Minha Carteira" />
-        <Title>Minha carteira</Title>
-      </Header>
-      <Menu>
-        <Link href="/dashboard">
-          <MdDashboard />
-          Dashboard
-        </Link>
-        <Link href="/list/entry-balance">
-          <MdArrowDownward />
-          Entradas
-        </Link>
-        <Link href="/list/exit-balance">
-          <MdArrowUpward />
-          Saídas
-        </Link>
-        <Link href="#">
-          <MdExitToApp />
-          Sair
-        </Link>
-      </Menu>
-    </Container>
-  );
-};
+const Aside: React.FC = () => (
+  <Container>
+    <Header>
+      <Logo src={ImageLogo} alt="Logo Minha Carteira" />
+      <Title>Minha carteira</Title>
+    </Header>
+    <Menu>
+      <Link href="/dashboard">
+        <MdDashboard />
+        Dashboard
+      </Link>
+      <Link href="/list/entry-balance">
+        <MdArrowDownward />
+        Entradas
+      </Link>
+      <Link href="/list/exit-balance">
+        <MdArrowUpward />
+        Saídas
+      </Link>
+      <Link href="#">
+        <MdExitToApp />
+        Sair
+      </Link>
+    </Menu>
+  </Container>
+);
 
 const Container = styled.div`
   grid-area: AS;

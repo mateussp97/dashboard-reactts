@@ -13,21 +13,19 @@ const MessageBox: React.FC<IMessageBoxProps> = ({
   description,
   footerText,
   icon,
-}) => {
-  return (
-    <Container>
-      <header>
-        <h1>
-          {title} <img src={icon} alt="Ícone" />
-        </h1>
-        <h2>{description}</h2>
-      </header>
-      <footer>
-        <span>{footerText}</span>
-      </footer>
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    <header>
+      <h1>
+        {title} <img src={icon} alt="Ícone" />
+      </h1>
+      <h2>{description}</h2>
+    </header>
+    <footer>
+      <span>{footerText}</span>
+    </footer>
+  </Container>
+);
 
 const Container = styled.div`
   width: 48%;

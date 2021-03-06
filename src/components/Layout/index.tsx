@@ -1,17 +1,25 @@
 import React from "react";
-import { Grid } from "./styles";
+import styled from "styled-components";
 import MainHeader from "./../MainHeader/index";
 import Aside from "../Aside";
 import Content from "../Content";
 
-const Layout: React.FC = ({ children }) => {
-  return (
-    <Grid>
-      <MainHeader />
-      <Aside />
-      <Content>{children}</Content>
-    </Grid>
-  );
-};
+const Layout: React.FC = ({ children }) => (
+  <Grid>
+    <MainHeader />
+    <Aside />
+    <Content>{children}</Content>
+  </Grid>
+);
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: 70px auto;
+  grid-template-areas:
+    "AS MH"
+    "AS CT";
+  height: 100vh;
+`;
 
 export default Layout;

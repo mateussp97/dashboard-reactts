@@ -25,40 +25,36 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({
   data,
   lineColorAmountEntry,
   lineColorAmountOutput,
-}) => {
-  return (
-    <Container>
-      <h1>Histórico de Saldo</h1>
-      <ResponsiveContainer>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#cccccc" />
-          <XAxis dataKey="month" stroke="#cccccc" />
-          <Tooltip
-            formatter={(value: Number) => formatCurrency(Number(value))}
-          />
-          <Line
-            type="monotone"
-            dataKey="amountEntry"
-            name="Entradas"
-            stroke={lineColorAmountEntry}
-            strokeWidth={4}
-            dot={{ r: 2 }}
-            activeDot={{ r: 4 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="amountOutput"
-            name="Saídas"
-            stroke={lineColorAmountOutput}
-            strokeWidth={4}
-            dot={{ r: 2 }}
-            activeDot={{ r: 4 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    <h1>Histórico de Saldo</h1>
+    <ResponsiveContainer>
+      <LineChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#cccccc" />
+        <XAxis dataKey="month" stroke="#cccccc" />
+        <Tooltip formatter={(value: Number) => formatCurrency(Number(value))} />
+        <Line
+          type="monotone"
+          dataKey="amountEntry"
+          name="Entradas"
+          stroke={lineColorAmountEntry}
+          strokeWidth={4}
+          dot={{ r: 2 }}
+          activeDot={{ r: 4 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="amountOutput"
+          name="Saídas"
+          stroke={lineColorAmountOutput}
+          strokeWidth={4}
+          dot={{ r: 2 }}
+          activeDot={{ r: 4 }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  </Container>
+);
 
 const Container = styled.div`
   width: 100%;

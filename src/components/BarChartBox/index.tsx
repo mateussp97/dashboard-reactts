@@ -17,38 +17,36 @@ interface ILegendProps {
   color: string;
 }
 
-const BarChartBox: React.FC<IBarChartBoxProps> = ({ data, title }) => {
-  return (
-    <Container>
-      <SideLeft>
-        <Legends>
-          <h1>{title}</h1>
-          {data.map((indicator) => (
-            <Legend key={indicator.name} color={indicator.color}>
-              <div>{indicator.percent}%</div>
-              <span>{indicator.name}</span>
-            </Legend>
-          ))}
-        </Legends>
-      </SideLeft>
-      <SideRight>
-        <ResponsiveContainer>
-          <BarChart data={data}>
-            <Bar dataKey="amount" name="Valor">
-              {data.map((indicator) => (
-                <Cell fill={indicator.color} key={indicator.name} />
-              ))}
-            </Bar>
-            <Tooltip
-              cursor={{ fill: "none" }}
-              formatter={(value: Number) => formatCurrency(Number(value))}
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </SideRight>
-    </Container>
-  );
-};
+const BarChartBox: React.FC<IBarChartBoxProps> = ({ data, title }) => (
+  <Container>
+    <SideLeft>
+      <Legends>
+        <h1>{title}</h1>
+        {data.map((indicator) => (
+          <Legend key={indicator.name} color={indicator.color}>
+            <div>{indicator.percent}%</div>
+            <span>{indicator.name}</span>
+          </Legend>
+        ))}
+      </Legends>
+    </SideLeft>
+    <SideRight>
+      <ResponsiveContainer>
+        <BarChart data={data}>
+          <Bar dataKey="amount" name="Valor">
+            {data.map((indicator) => (
+              <Cell fill={indicator.color} key={indicator.name} />
+            ))}
+          </Bar>
+          <Tooltip
+            cursor={{ fill: "none" }}
+            formatter={(value: Number) => formatCurrency(Number(value))}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </SideRight>
+  </Container>
+);
 
 const Container = styled.div`
   width: 48%;
