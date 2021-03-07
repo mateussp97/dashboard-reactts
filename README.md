@@ -1,4 +1,4 @@
-# React e TypeScript: desenvolvendo um Dashboard
+# React and TypeScript: Developing a Dashboard
 
 ## What was developed?
 
@@ -18,6 +18,7 @@ The technologies used in this project were:
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 - [Styled Components](https://styled-components.com/)
 - [Recharts](https://recharts.org/en-US)
 
