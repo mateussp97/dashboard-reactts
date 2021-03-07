@@ -1,6 +1,6 @@
 import React from "react";
 import { ResponsiveContainer, BarChart, Bar, Cell, Tooltip } from "recharts";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import formatCurrency from "./../../utils/formatCurrency";
 
 interface IBarChartBoxProps {
@@ -48,6 +48,20 @@ const BarChartBox: React.FC<IBarChartBoxProps> = ({ data, title }) => (
   </Container>
 );
 
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   width: 48%;
   height: 280px;
@@ -63,6 +77,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  animation: ${animate} 0.5s;
 
   @media screen and (max-width: 1000px) {
     width: 100%;

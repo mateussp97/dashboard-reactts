@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface ITagProps {
   color: string;
@@ -30,6 +30,20 @@ const HistoryFinance: React.FC<IHistoryFinanceProps> = ({
   </Container>
 );
 
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
 const Container = styled.li`
   background: ${(props) => props.theme.colors.tertiary};
 
@@ -47,6 +61,7 @@ const Container = styled.li`
 
   cursor: pointer;
   transition: all 0.3s;
+  animation: ${animate} 0.5s ease-in;
 
   &:hover {
     opacity: 0.7;

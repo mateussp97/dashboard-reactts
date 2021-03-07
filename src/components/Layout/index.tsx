@@ -21,7 +21,7 @@ const Grid = styled.div`
     "AS CT";
   height: 100vh;
 
-  @media screen and (max-width: 668px) {
+  @media screen and (max-width: 767px) {
     grid-template-columns: 100%;
     grid-template-rows: 70px auto;
     grid-template-areas:

@@ -7,7 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import formatCurrency from "./../../utils/formatCurrency";
 
@@ -56,6 +56,20 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({
   </Container>
 );
 
+const animate = keyframes`
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
   height: 340px;
@@ -66,6 +80,8 @@ const Container = styled.div`
   color: ${(props) => props.theme.colors.white};
 
   padding: 1rem 1rem 2rem 1rem;
+
+  animation: ${animate} 0.5s;
 
   @media screen and (max-width: 1000px) {
     margin: 2rem 0;

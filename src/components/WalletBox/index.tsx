@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import arrowDown from "../../assets/arrow-down.svg";
 import arrowUp from "../../assets/arrow-up.svg";
 import dollar from "../../assets/dollar.svg";
@@ -56,6 +56,20 @@ const WalletBox: React.FC<IWalletBoxProps> = ({
   );
 };
 
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div<IContainerProps>`
   width: 32%;
   height: 176px;
@@ -67,6 +81,8 @@ const Container = styled.div<IContainerProps>`
   overflow: hidden;
 
   position: relative;
+
+  animation: ${animate} 0.5s;
 
   > img {
     position: absolute;

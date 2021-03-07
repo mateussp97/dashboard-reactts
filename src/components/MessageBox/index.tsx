@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface IMessageBoxProps {
   title: string;
@@ -27,6 +27,20 @@ const MessageBox: React.FC<IMessageBoxProps> = ({
   </Container>
 );
 
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   width: 48%;
   height: 280px;
@@ -43,6 +57,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+
+  animation: ${animate} 0.5s;
 
   > header img {
     width: 3rem;

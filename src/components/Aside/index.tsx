@@ -9,16 +9,32 @@ import {
   MdClose,
   MdMenu,
 } from "react-icons/md";
+import Toggle from "./../Toggle/index";
 import { useAuth } from "../../hooks/auth";
+import { useTheme } from "../../hooks/theme";
 
 interface IContainerProps {
+  menuIsOpen: boolean;
+}
+
+interface IToggleWrapper {
   menuIsOpen: boolean;
 }
 
 const Aside: React.FC = () => {
   //! Pegamos a função do hook criado 'useAuth' para colocar no botão para sair da aplicação
   const { signOut } = useAuth();
+  const { toggleTheme, theme } = useTheme();
   const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
+  //! Um estado para verificar qual theme está sendo usado
+  const [darkTheme, setDarkTheme] = useState(() =>
+    theme.title === "dark" ? true : false
+  );
+
+  const handleChangeTheme = () => {
+    setDarkTheme(!darkTheme);
+    toggleTheme();
+  };
 
   const handleToggleMenu = () => {
     setToggleMenuIsOpened(!toggleMenuIsOpened);
@@ -51,6 +67,14 @@ const Aside: React.FC = () => {
           Sair
         </Link>
       </Menu>
+      <ToggleWrapper menuIsOpen={toggleMenuIsOpened}>
+        <Toggle
+          labelLeft="Light"
+          labelRight="Dark"
+          checked={darkTheme}
+          onChange={handleChangeTheme}
+        />
+      </ToggleWrapper>
     </Container>
   );
 };
@@ -66,10 +90,10 @@ const Container = styled.div<IContainerProps>`
 
   position: relative;
 
-  @media screen and (max-width: 676px) {
+  @media screen and (max-width: 767px) {
     width: 175px;
     position: fixed;
-    z-index: 2;
+    z-index: 99;
     height: ${(props) => (props.menuIsOpen ? "100vh" : "70px")};
     overflow: hidden;
 
@@ -116,10 +140,28 @@ const ToggleMenu = styled.div`
   }
 `;
 
+const ToggleWrapper = styled.div<IToggleWrapper>`
+  display: none;
+
+  ${(props) =>
+    !props.menuIsOpen
+      ? css`
+          display: none;
+        `
+      : css`
+          @media screen and (max-width: 767px) {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            display: inherit;
+          }
+        `}
+`;
+
 const Logo = styled.img`
   margin-right: 1rem;
 
-  @media screen and (max-width: 676px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;
@@ -127,7 +169,7 @@ const Logo = styled.img`
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.white};
 
-  @media screen and (max-width: 676px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;
@@ -141,7 +183,7 @@ const Menu = styled.nav`
   align-items: flex-start;
   justify-content: center;
 
-  @media screen and (max-width: 676px) {
+  @media screen and (max-width: 767px) {
     margin-left: 1rem;
   }
 `;
