@@ -109,6 +109,13 @@ const Legend = styled.li<ILegendProps>`
     border-radius: 0.25rem;
     background: ${(props) => props.color};
     margin-right: 0.5rem;
+
+    @media screen and (max-width: 424px) {
+      width: 40px;
+      height: 40px;
+
+      font-size: 0.875rem;
+    }
   }
 `;
 
@@ -119,6 +126,10 @@ const SideRight = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 424px) {
+    width: 56%;
+  }
 `;
 
 export default PieChartBox;

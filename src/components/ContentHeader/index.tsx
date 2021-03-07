@@ -36,6 +36,11 @@ const Container = styled.div`
   justify-content: space-between;
 
   margin-bottom: 2rem;
+
+  @media screen and (max-width: 424px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Wrapper = styled.div``;
@@ -57,6 +62,10 @@ const Controllers = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 424px) {
+    margin-top: 2rem;
+  }
 `;
 
 export default ContentHeader;
